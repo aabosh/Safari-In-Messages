@@ -1,0 +1,9 @@
+Package: com.andrewabosh.safari-in-messages
+Name: Safari in Messages
+Depends: mobilesubstrate
+Version: 0.0.1
+Architecture: iphoneos-arm
+Description: Open links natively inside Messages
+Maintainer: Andrew Abosh
+Author: Andrew Abosh
+Section: Tweaks
