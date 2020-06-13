@@ -1,4 +1,4 @@
-# Safari-In-Messages
+# Safari in Messages
 ### Open links natively inside Messages
 Safari in Messages adds functionality in the native Messages app to conveniently open links directly within Messages, rather than launching Safari.
 
