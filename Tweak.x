@@ -1,6 +1,4 @@
-@interface SFSafariViewController: UIViewController
-- (id)initWithURL:(id)url;
-@end
+#import <SafariServices/SafariServices.h>
 
 @interface SMSApplication: UIApplication
 @end
