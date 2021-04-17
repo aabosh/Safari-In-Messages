@@ -1,4 +1,3 @@
-THEOS_DEVICE_IP = 10.0.1.48
 include $(THEOS)/makefiles/common.mk
 
 TWEAK_NAME = SafariInMessages
