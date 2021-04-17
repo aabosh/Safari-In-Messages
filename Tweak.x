@@ -5,7 +5,7 @@
 
 %hook SMSApplication
 
--(BOOL)openURL:(NSURL*)url {
+- (BOOL)openURL:(NSURL*)url {
 	if ([url.scheme isEqual:@"http"] || [url.scheme isEqual:@"https"]) {
 		// We only want to open URLs that aren't universal links in the SFSafariViewController
 		[[UIApplication sharedApplication] openURL:url options:@{UIApplicationOpenURLOptionUniversalLinksOnly: @YES} completionHandler:^(BOOL success) {
