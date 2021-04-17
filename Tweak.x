@@ -20,4 +20,18 @@
 	}
 }
 
+- (void)openURL:(NSURL*)url options:(NSDictionary<NSString *, id> *)options completionHandler:(void (^)(BOOL success))completion {
+	BOOL universalLinksOnly = [[options objectForKey:UIApplicationOpenURLOptionUniversalLinksOnly] boolValue];
+	if (([url.scheme isEqual:@"http"] || [url.scheme isEqual:@"https"]) &&  !universalLinksOnly) {
+		[[UIApplication sharedApplication] openURL:url options:@{UIApplicationOpenURLOptionUniversalLinksOnly: @YES} completionHandler:^(BOOL success) {
+			if(!success) {
+				SFSafariViewController *safariViewController = [[SFSafariViewController alloc] initWithURL:url];
+				[[self keyWindow].rootViewController presentViewController:safariViewController animated:YES completion:nil];
+			}
+		}];
+	} else {
+		%orig;
+	}
+}
+
 %end
