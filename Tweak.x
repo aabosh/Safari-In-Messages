@@ -36,3 +36,30 @@
 }
 
 %end
+
+
+@interface CKHyperlinkBalloonView: UIView
+- (UIViewController *)parentViewController;
+@end
+
+%hook CKHyperlinkBalloonView
+
+%new
+- (UIViewController *)parentViewController {
+    UIResponder *responder = self;
+    while ([responder isKindOfClass:[UIView class]])
+        responder = [responder nextResponder];
+    return (UIViewController *)responder;
+}
+
+- (BOOL)textView:(id)arg1 shouldInteractWithURL:(NSURL*)url inRange:(NSRange)arg3 {
+	SFSafariViewController *safariViewController = [[SFSafariViewController alloc] initWithURL:url];
+	[[self parentViewController] presentViewController:safariViewController animated:YES completion:nil];
+	return NO;
+}
+
+- (void)interactionStartedFromPreviewItemControllerInTextView:(id)arg1 {}
+
+- (void)interactionStartedLongPressInTextView:(id)arg1 {}
+
+%end
