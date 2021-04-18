@@ -1,5 +1,22 @@
 #import <SafariServices/SafariServices.h>
+#import <Cephei/HBPreferences.h>
 
+// MARK: Preferences
+static NSString* const kPrefsBundleId = @"com.andrewabosh.safari-in-messages-prefs";
+static NSString* const kPrefsEnabledKey = @"IsEnabled";
+HBPreferences *preferences;
+BOOL isEnabled;
+
+%ctor {
+	preferences = [[HBPreferences alloc] initWithIdentifier:kPrefsBundleId];
+	[preferences registerDefaults:@{
+		kPrefsEnabledKey: @YES,
+	}];
+
+	[preferences registerBool:&isEnabled default:YES forKey:kPrefsEnabledKey];
+}
+
+// MARK: The Magic
 @interface SMSApplication: UIApplication
 - (void)openNonUniversalLink:(NSURL*)url;
 @end
@@ -18,7 +35,7 @@
 }
 
 - (BOOL)openURL:(NSURL*)url {
-	if ([url.scheme isEqual:@"http"] || [url.scheme isEqual:@"https"]) {
+	if (isEnabled && ([url.scheme isEqual:@"http"] || [url.scheme isEqual:@"https"])) {
 		[self openNonUniversalLink:url];
 		return YES;
 	} else {
@@ -28,7 +45,7 @@
 
 - (void)openURL:(NSURL*)url options:(NSDictionary<NSString *, id> *)options completionHandler:(void (^)(BOOL success))completion {
 	BOOL universalLinksOnly = [[options objectForKey:UIApplicationOpenURLOptionUniversalLinksOnly] boolValue];
-	if (([url.scheme isEqual:@"http"] || [url.scheme isEqual:@"https"]) &&  !universalLinksOnly) {
+	if (isEnabled && ([url.scheme isEqual:@"http"] || [url.scheme isEqual:@"https"]) &&  !universalLinksOnly) {
 		[self openNonUniversalLink:url];
 	} else {
 		%orig;
