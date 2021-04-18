@@ -7,6 +7,7 @@ SafariInMessages_CFLAGS = -fobjc-arc
 SafariInMessages_FRAMEWORKS = SafariServices UIKit
 SafariInMessages_EXTRA_FRAMEWORKS = Cephei
 SUBPROJECTS += prefs
+ARCHS = armv7 arm64 arm64e
 
 include $(THEOS_MAKE_PATH)/tweak.mk
 include $(THEOS_MAKE_PATH)/aggregate.mk
