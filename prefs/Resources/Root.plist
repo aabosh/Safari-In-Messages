@@ -8,7 +8,7 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>label</key>
-			<string>prefs First Page</string>
+			<string>Safari in Messages</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -21,6 +21,26 @@
 			<string>IsEnabled</string>
 			<key>label</key>
 			<string>Enabled</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Options</string>
+			<key>footerText</key>
+			<string>Open Universal Links within Messages too.</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>com.andrewabosh.safari-in-messages-prefs</string>
+			<key>key</key>
+			<string>OpenUniversalLinks</string>
+			<key>label</key>
+			<string>Open Universal Links</string>
 		</dict>
 	</array>
 	<key>title</key>

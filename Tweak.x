@@ -2,21 +2,27 @@
 #import <Cephei/HBPreferences.h>
 
 // MARK: Preferences
+
 static NSString* const kPrefsBundleId = @"com.andrewabosh.safari-in-messages-prefs";
 static NSString* const kPrefsEnabledKey = @"IsEnabled";
+static NSString* const kPrefsOpenUniversalLinksKey = @"OpenUniversalLinks";
 HBPreferences *preferences;
 BOOL isEnabled;
+BOOL openUniversalLinks;
 
 %ctor {
 	preferences = [[HBPreferences alloc] initWithIdentifier:kPrefsBundleId];
 	[preferences registerDefaults:@{
 		kPrefsEnabledKey: @YES,
+		kPrefsOpenUniversalLinksKey: @NO,
 	}];
-
 	[preferences registerBool:&isEnabled default:YES forKey:kPrefsEnabledKey];
+	[preferences registerBool:&openUniversalLinks default:NO forKey:kPrefsOpenUniversalLinksKey];
 }
 
+
 // MARK: The Magic
+
 @interface SMSApplication: UIApplication
 - (void)openNonUniversalLink:(NSURL*)url;
 @end
