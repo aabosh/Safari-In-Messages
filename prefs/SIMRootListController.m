@@ -1,4 +1,5 @@
 #include "SIMRootListController.h"
+void BKSTerminateApplicationForReasonAndReportWithDescription(NSString* bundleId, int reasonId, bool report, NSString *description);
 
 @implementation SIMRootListController
 
@@ -8,6 +9,11 @@
 	}
 
 	return _specifiers;
+}
+
+- (void)setPreferenceValue:(id)value specifier:(PSSpecifier *)specifier {
+	[super setPreferenceValue:value specifier:specifier];
+	BKSTerminateApplicationForReasonAndReportWithDescription(@"com.apple.MobileSMS", 5, false, @"Killing Messages to refresh Safari In Messages preferences.");
 }
 
 - (instancetype)init {
