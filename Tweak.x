@@ -32,8 +32,12 @@ BOOL openUniversalLinks;
 
 %new
 - (void)presentUrlInSafariVC:(NSURL*)url {
+	UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
+	while (topController.presentedViewController) {
+		topController = topController.presentedViewController;
+	}
 	SFSafariViewController *safariViewController = [[SFSafariViewController alloc] initWithURL:url];
-	[[self keyWindow].rootViewController presentViewController:safariViewController animated:YES completion:nil];
+	[topController presentViewController:safariViewController animated:YES completion:nil];
 }
 
 %new
