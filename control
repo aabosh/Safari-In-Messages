@@ -1,7 +1,7 @@
 Package: com.andrewabosh.safari-in-messages
 Name: Safari in Messages
 Depends: mobilesubstrate, ws.hbang.common (>= 1.16)
-Version: 1.0.1
+Version: 1.0.2
 Architecture: iphoneos-arm
 Description: Open links natively inside Messages
 Maintainer: Andrew Abosh
